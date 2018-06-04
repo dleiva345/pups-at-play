@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
 
 //mysql connection
 var mysql = require("mysql");
-var dialog = require('dialog');
+//var dialog = require('dialog');
 
 
 // Test Pool
@@ -83,19 +83,19 @@ app.get('/searchme', function(req, res){
         console.log();
     });
 
-    var objSize = Object.keys(myhandlebarObj).length ;
-    if (objSize == 0) 
-    {
-        dialog.warn('User information does not exist!', function(exitCode) {
-            console.log(exitCode);
-        })
-        res.redirect('/login');
-    } 
-    else {
-        setTimeout(function(){
-            res.redirect('/profile');
-        }, 1000);
-        }
+    //var objSize = Object.keys(myhandlebarObj).length ;
+    //if (objSize == 0) 
+    //{
+    //    dialog.warn('User information does not exist!', function(exitCode) {
+    //        console.log(exitCode);
+    //    })
+    //    res.redirect('/login');
+    //} 
+    //else {
+    //    setTimeout(function(){
+    //        res.redirect('/profile');
+    //    }, 1000);
+    //    }
 });
 
   
@@ -104,7 +104,8 @@ app.get('/searchme', function(req, res){
 app.get("/profile", function(req, res){
     var objSize = Object.keys(myhandlebarObj).length
     if (objSize == 0){
-        res.redirect('/login');
+        res.render('/login');
+        //res.redirect('/login');
     } else {
             res.render("profile", myhandlebarObj);
         }
@@ -173,7 +174,8 @@ app.post('/create', function(req, res){
         console.log("db created!")
 
     });
-    res.redirect('/login')
+    res.render('/login');
+    //res.redirect('/login');
 });
 
 
@@ -252,7 +254,8 @@ app.post("/scheduler", function(req, res){
           console.log('Email sent: ' + info.response);
         }
       });
-    res.redirect('/thanks')
+    res.render('/thanks')
+    //res.redirect('/thanks;)
 });
 //
 
