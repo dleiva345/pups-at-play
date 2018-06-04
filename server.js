@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
 
 //mysql connection
 var mysql = require("mysql");
-var dialog = require('dialog');
+//var dialog = require('dialog');
 
 
 // Test Pool
@@ -83,16 +83,16 @@ app.get('/searchme', function(req, res){
         console.log();
     });
 
-    var objSize = Object.keys(myhandlebarObj).length ;
-    if (objSize == 0) {
-        dialog.warn('User information does not exist!', function(exitCode) {
-            console.log(exitCode);
-        })
-        res.redirect('/login');
-      } else {
-        setTimeout(function(){
-            res.redirect('/profile');
-        }, 1000);
+    //var objSize = Object.keys(myhandlebarObj).length ;
+    //if (objSize == 0) {
+    //    dialog.warn('User information does not exist!', function(exitCode) {
+    //        console.log(exitCode);
+    //    })
+    //    res.redirect('/login');
+    //  } else {
+    //    setTimeout(function(){
+    //        res.redirect('/profile');
+    //    }, 1000);
       }
 });
 
