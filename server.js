@@ -15,8 +15,8 @@ var mysql = require("mysql");
 
 
 // Test Pool
-var connection = mysql.createConnection({
-   //connectionLimit: 10,
+var pool = mysql.createPool({
+   connectionLimit: 10,
    host : 'us-cdbr-iron-east-04.cleardb.net',
    user : 'b6633b71acf36b',
    password: 'c8760750',
@@ -70,7 +70,7 @@ app.get('/searchme', function(req, res){
     //DB query
     var queryString = 'SELECT * FROM ' + dbTable + ' WHERE email = "'+ myEmail + '" and zipcode = '+ myZipcode + ';';
     var resSize = 0;
-    connection.query(queryString, function(err, res){
+    pool.query(queryString, function(err, res){
         myhandlebarObj = '';
         if(err) {console.log(err);}
         resSize = Object.keys(res).length;
@@ -165,7 +165,7 @@ app.post('/create', function(req, res){
         ' (first_name, last_name, email, address, zipcode, dog_name, dog_breed, dog_gender, dog_age, dog_personality, dog_weight, img_url, human_img_url) VALUES ("'+ 
         myFirstName + '", "' + myLastName + '", "' + myEmail + '", "' + myAddress + '", ' + myZipcode + ', "' + myDogName + '", "' + myDogBreed + '", "' + myDogGender + '", "' + myDogAge + '", "'  + myDogPersonality + '", " '+ myDogWeight + '", "' + myDogImg + '", "' + myImg + '")';
 
-    connection.query(queryString, function(err, res){
+    pool.query(queryString, function(err, res){
         if(err) {console.log(err);}
         console.log("db created!")
 
@@ -205,7 +205,7 @@ app.get('/result',function(req,res){
         queryString+=' AND dog_weight = "' + dogWeight + '" ;';
     }
     console.log("Query", queryString);
-    connection.query(queryString, function(err,response){
+    pool.query(queryString, function(err,response){
         if(err) {
             console.log(err);
             console.log("result error");
