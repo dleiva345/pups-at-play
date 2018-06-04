@@ -85,12 +85,12 @@ app.get('/searchme', function(req, res){
 
     var objSize = Object.keys(myhandlebarObj).length ;
     if (objSize == 0) 
-    //{
-        //dialog.warn('User information does not exist!', function(exitCode) {
-        //    console.log(exitCode);
-        //})
+    {
+        dialog.warn('User information does not exist!', function(exitCode) {
+            console.log(exitCode);
+        })
         res.redirect('/login');
-   // } 
+    } 
     else {
         setTimeout(function(){
             res.redirect('/profile');
