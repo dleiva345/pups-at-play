@@ -24,7 +24,7 @@ var pool = mysql.createPool({
 });
 
 //DB query
-//var dbTable = "dogprofile.dog_info";
+var dbTable = "dogprofile.dog_info";
 var dbTable = "dog_info"
 var queryString = '';
 var handlebarObj = '';
@@ -84,16 +84,18 @@ app.get('/searchme', function(req, res){
     });
 
     var objSize = Object.keys(myhandlebarObj).length ;
-    if (objSize == 0) {
-        dialog.warn('User information does not exist!', function(exitCode) {
-            console.log(exitCode);
-        })
+    if (objSize == 0) 
+    //{
+        //dialog.warn('User information does not exist!', function(exitCode) {
+        //    console.log(exitCode);
+        //})
         res.redirect('/login');
-      } else {
+   // } 
+    else {
         setTimeout(function(){
             res.redirect('/profile');
         }, 1000);
-      }
+        }
 });
 
   
@@ -104,10 +106,11 @@ app.get("/profile", function(req, res){
     if (objSize == 0){
         res.redirect('/login');
     } else {
-        res.render("profile", myhandlebarObj);
+            res.render("profile", myhandlebarObj);
+        }
     }
     
-});
+);
 
 app.get('/create', function(req, res){
     res.render('create');
@@ -138,12 +141,12 @@ var myDogImg = '';
 
 app.post('/upload_h', upload.single('img'), function(req, res) {
     myImg = "/upImgs/" + req.file.filename;
-//    console.log(req.file.filename);
+    console.log(req.file.filename);
 });
 
 app.post('/upload_d', upload.single('img'), function(req, res) {
     myDogImg = "/upImgs/" + req.file.filename;
-//    console.log(req.file.filename);
+    console.log(req.file.filename);
 });
 
 
