@@ -53,7 +53,7 @@ We want to add authentication using passwords. We may also include multi-factor 
 We want to include a section in the users profile for previous dates, saved dogs for future dates, etc.
 
 
-##Node dependencies:
+## Node dependencies:
 * express
 * express-handlebars
 * body-parcer
